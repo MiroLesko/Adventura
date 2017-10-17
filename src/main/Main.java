@@ -5,7 +5,6 @@
  */
 package main;
 
-import java.util.HashSet;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -16,6 +15,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.StackPane;
@@ -34,14 +35,18 @@ import uiText.TextoveRozhrani;
  */
 public class Main extends Application {
 
+    private TextArea centralText;
+    private IHra hra;
+    private TextField zadejPrikazTextArea;
+    
     @Override
     public void start(Stage primaryStage) {
-        IHra hra = new Hra();
+        
         BorderPane borderPane = new BorderPane();  
 
-        //ctl+space - doplnanie
+        //ctrl+space - doplnanie
 
-        TextArea centralText = new TextArea();
+        
         centralText.setText(hra.vratUvitani());
         centralText.setEditable(false);
         
@@ -50,7 +55,7 @@ public class Main extends Application {
         Label zadejPrikazLabel = new Label("Zadaj príkaz: ");
         zadejPrikazLabel.setFont(Font.font("Arial", FontWeight.BOLD, 12));
        
-        TextField zadejPrikazTextArea = new TextField("...");
+   
         zadejPrikazTextArea.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -67,9 +72,13 @@ public class Main extends Application {
                    centralText.appendText(hra.vratEpilog());
             
             }
-        }};
+            }});
         
              
+        FlowPane obrazekFlowPane = new FlowPane();
+        ImageView obrazekImageView = new ImageView(new Image(Main.class.getResourceAsStream("./zdroje/mapa.png"),300,300,false,true));
+        obrazekFlowPane.setAlignment(Pos.CENTER);
+        obrazekFlowPane.getChildren().add(obrazekImageView);        
         
         
         FlowPane dolnaLista = new FlowPane();
