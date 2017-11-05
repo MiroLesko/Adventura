@@ -1,5 +1,10 @@
 package logika;
 
+import java.util.ArrayList;
+import java.util.List;
+import utils.Observer;
+import utils.Subject;
+
 
 /**
  * Class HerniPlan - třída představující mapu a stav adventury.
@@ -11,11 +16,15 @@ package logika;
  * @author     Michael Kolling, Lubos Pavlicek, Jarmila Pavlickova, Jan Riha, Miroslav Leško
  * @version    ZS 2016/2017
  */
-public class HerniPlan {
+public class HerniPlan implements Subject{
 
     private static final String CILOVY_PROSTOR = "let_smer_Miami";
     private static final String KONEC_HRY_1 = "záhadná_miestnosť";
     private static final String KONEC_HRY_2 = "parkovisko";
+    
+    private List<Observer> listObserveru = new ArrayList<Observer>();
+    
+    
     
     private Prostor aktualniProstor;
 
@@ -44,36 +53,36 @@ public class HerniPlan {
         // vytvářejí se jednotlivé prostory
         Prostor zadrziavaciaCela = new Prostor("zadržiavacia_cela","zadržiavacia cela pre dočasné umiestnenie osôb" + '\n' +
                                                                       "podorzrivých z trestnej činnosti, prípadne inej"+ '\n' +
-                                                                            "činnosti, ktorá narúša, prípadne môže narušit chod letiska");
-        Prostor chodba = new Prostor("chodba", "chodba s úplne obyčajným vzhľadom");
-        Prostor sklad = new Prostor("sklad","sklad, ktorý slúži pre uskladnenie vecí" + '\n' + "pre údržbu letiska");
-        Prostor kopirovaciaMiestnost = new Prostor("kopírovacia_miestnosť","kopírovacia_miestnosť s kancelárskymi potrebami" + '\n' + "a kopírkou");
+                                                                            "činnosti, ktorá narúša, prípadne môže narušit chod letiska",135,165);
+        Prostor chodba = new Prostor("chodba", "chodba s úplne obyčajným vzhľadom",163,170);
+        Prostor sklad = new Prostor("sklad","sklad, ktorý slúži pre uskladnenie vecí" + '\n' + "pre údržbu letiska",195,177);
+        Prostor kopirovaciaMiestnost = new Prostor("kopírovacia_miestnosť","kopírovacia_miestnosť s kancelárskymi potrebami" + '\n' + "a kopírkou",85,215);
         Prostor zahadnaMiestnost = new Prostor(KONEC_HRY_1,"záhadná miestnosť. WHOOPS! Tak toto sa nemalo stať!" + '\n' +  
-                                                                                    "Je to WC na ktorom sedí policajt! Tvoj pokus o útek sa nepodaril.");
-        Prostor schodisko = new Prostor("schodisko_0","schodisko prízemie, môžeš postupovať do miestností na tomto podlaží");
-        Prostor schodisko1 = new Prostor("schodisko_1PP","prvé podzemné podlažie, môžeš postupovať do miestností na tomto podlaží");
+                                                                                    "Je to WC na ktorom sedí policajt! Tvoj pokus o útek sa nepodaril.",45,220);
+        Prostor schodisko = new Prostor("schodisko_0","schodisko prízemie, môžeš postupovať do miestností na tomto podlaží",170,205);
+        Prostor schodisko1 = new Prostor("schodisko_1PP","prvé podzemné podlažie, môžeš postupovať do miestností na tomto podlaží",165,308);
         Prostor schodisko2 = new Prostor("schodisko_1NP","prvé nadzemné podlažie, môžeš postupovať do miestností na tomto podlaží." + '\n' +
                                                                 "Východ zo schodiska je opatrený bezpečnostnými dverami." +'\n' +
-                                                                "Nájdi niečo, čím by sa dali otvoriť.");
+                                                                "Nájdi niečo, čím by sa dali otvoriť.",200,100);
         Prostor skladBatozin = new Prostor("sklad_batožín","sklad batožín, kde sa triedi batožina pre rozličné lety" + '\n' + 
-                                                            "a zhromažďujú stratené kufre.");
-        Prostor odletovaHala = new Prostor("odletová_hala","odletová hala, hlavný priestor letiska s občianskou vybavenosťou");
+                                                            "a zhromažďujú stratené kufre.",230,270);
+        Prostor odletovaHala = new Prostor("odletová_hala","odletová hala, hlavný priestor letiska s občianskou vybavenosťou",230,50);
         Prostor parkovisko = new Prostor(KONEC_HRY_2,"parkovisko. WHOOPS! Tak toto sa nemalo stať!" + '\n' + 
                                                                       "Parkovisko je plné policajtov, ktorí ťa hľadajú."+ '\n' + 
-                                                                       "Tvoj pokus o útek sa nepodaril.");
+                                                                       "Tvoj pokus o útek sa nepodaril.",50,50);
         Prostor checkIn = new Prostor("check_in","check-in, miesto kontroly náležitostí pre povolenie k letu."+ '\n' + 
-                                                       "Máš naozaj všetko, čo potrebuješ?");
+                                                       "Máš naozaj všetko, čo potrebuješ?",330,60);
                                                         
-        Prostor potraviny = new Prostor("potraviny","letištné potraviny, malý výber a nehorázne ceny..."); 
+        Prostor potraviny = new Prostor("potraviny","letištné potraviny, malý výber a nehorázne ceny...",110,95); 
         Prostor detektorKovov = new Prostor("detektor_kovov","detektor kovov, zariadenie na kontrolu nebezpečných predmetov"+ '\n' +
-                                                                "Kovové predmety sú problém!");
+                                                                "Kovové predmety sú problém!",383,57);
         Prostor cakaciaMiestnost = new Prostor("čakacia_miestnosť","čakacia miestnosť, ktorá poskytuje cestujúcim komfort"+ '\n' +
-                                                                    "pri čakaní na svoj let");
-        Prostor gate1 = new Prostor("gate_1","gate 1, odletová brána pre vnútroštátne linky, ale ty letíš do USA");
-        Prostor gate2 = new Prostor("gate_2","gate 2, odletová brána pre súkromné lety" + '\n' + "Uplatený muchacho ťa víta širokým úsmevom");
-        Prostor gate3 = new Prostor("gate_3","gate 3, odletová brána pre medzinárodné lety, ale tu by si drogy sotva prepašoval");
+                                                                    "pri čakaní na svoj let",400,135);
+        Prostor gate1 = new Prostor("gate_1","gate 1, odletová brána pre vnútroštátne linky, ale ty letíš do USA",337,170);
+        Prostor gate2 = new Prostor("gate_2","gate 2, odletová brána pre súkromné lety" + '\n' + "Uplatený muchacho ťa víta širokým úsmevom",370,170);
+        Prostor gate3 = new Prostor("gate_3","gate 3, odletová brána pre medzinárodné lety, ale tu by si drogy sotva prepašoval",403,170);
         Prostor letSmerMiami = new Prostor(CILOVY_PROSTOR,"let_smer_Miami. Dobrá práca! Prekonal si nástrahy letiska"+ '\n' +
-                                                                "a letíš za svojou budúcnosťou. Či to bol správny krok ukáže čas");
+                                                                "a letíš za svojou budúcnosťou. Či to bol správny krok ukáže čas",357,210);
         
         // přiřazují se průchody mezi prostory (sousedící prostory)
         zadrziavaciaCela.setVychod(chodba);
@@ -164,6 +173,7 @@ public class HerniPlan {
      */
     public void setAktualniProstor(Prostor prostor) {
        aktualniProstor = prostor;
+       notifyObservers();
     }
 
     /**
@@ -197,6 +207,24 @@ public class HerniPlan {
     public Batoh getBatoh(){
         return this.batoh;
     
+    }
+
+    @Override
+    public void registerObserver(Observer observer) {
+        listObserveru.add(observer);
+
+    }
+
+    @Override
+    public void removeObserver(Observer observer) {
+         listObserveru.remove(observer);
+    }
+
+    @Override
+    public void notifyObservers() {
+         for (Observer listObserveruItem : listObserveru) {
+            listObserveruItem.update();
+        }
     }
     
 }
