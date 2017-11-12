@@ -1,0 +1,10 @@
+
+if (typeof ado==="object" && ado.beginCreative) {var _ado_elem = ado.beginCreative({id:'sj6X3HeuNvibA.toVjLefLHn.mW.FDuB5IQLFRrGJS3.u7', arg:'', isEmpty:1});}
+_adocea__break_lchrg_solbr=function() {
+var id=document.getElementById('script_lchrgsolbr');
+if (id) { eval("try { id.src = 'http://'; id.text=''; } catch(exception) { }");}};
+if (!document.documentElement||typeof document.documentElement.style.maxHeight=='undefined') setTimeout('_adocea__break_lchrg_solbr();',2000);
+document.write('<script id="script_lchrgsolbr" src="http://finweb.hnonline.sk/YQAfMjcSXmQGZahOX8I5RMIK0ElPUvd1hZkMv/YYQ/_'+(new Date()).getTime()+'/redot.js/id=B9LrQu9ErKxt5tfkVDcriqcV.KfIeyPBFVxbbaVIRGH.z7/stparam=lchrgsolbr/fastid=fkpjjoxdieibibducflegazxzska/sarg=NC" language="javascript"><\/script>');
+if (typeof ado==="object" && ado.endExternal){ ado.endExternal(); }
+
+

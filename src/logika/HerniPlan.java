@@ -121,17 +121,17 @@ public class HerniPlan implements Subject{
         
         
         // vytvoříme několik věcí
-        Vec letenka = new Vec("letenka", "Tvoja letenka do Miami", true);
-        Vec pas = new Vec("pas", "Tvoj pas, úradný doklad umožnujúci vycestovanie", true);
-        Vec pacidlo = new Vec("páčidlo", "Kovový nástroj vhodný na násilné vniknutie" + '\n' + "do uzatvorených priestorov", true);
-        Vec lano = new Vec("lano", "Horolezecké lano, primárne určené na zaisťovanie batožín", true);
+        Vec letenka = new Vec("letenka", "Tvoja letenka do Miami", true, "/zdroje/letenka.png");
+        Vec pas = new Vec("pas", "Tvoj pas, úradný doklad umožnujúci vycestovanie", true, "/zdroje/pas.png");
+        Vec pacidlo = new Vec("páčidlo", "Kovový nástroj vhodný na násilné vniknutie" + '\n' + "do uzatvorených priestorov", true, "/zdroje/pacidlo.png");
+        Vec lano = new Vec("lano", "Horolezecké lano, primárne určené na zaisťovanie batožín", true, "/zdroje/lano.jpg");
         Vec hydraulickeKlieste = new Vec("hydraulické_kliešte", "Masívne kliešte na strihanie hrubých plechov"+ '\n' +
-                                                                    "a materiálov", false);
-        Vec hasiaciPristroj = new Vec("hasiaci_prístroj", "Práškový hasiaci prístroj slúžiaci na hasenie požiarov", true);
-        Vec mobil = new Vec("mobil", "Plne funkčný zabudnutý mobil", true);
-        Vec jackDaniels = new Vec("jack_daniels", "Flaša kvalitnej, dobre známej whiskey", true);
-        Vec kubanskeDutniky = new Vec("dutníky", "Balenie pravých kubánských dutníkov", true);
-        Vec rozkyt = new Vec("r&t", "Sada pre labužníkov - rožky a treska", true);
+                                                                    "a materiálov", false, "/zdroje/klieste.jpg");
+        Vec hasiaciPristroj = new Vec("hasiaci_prístroj", "Práškový hasiaci prístroj slúžiaci na hasenie požiarov", true, "/zdroje/hasiaci.jpg");
+        Vec mobil = new Vec("mobil", "Plne funkčný zabudnutý mobil", true, "/zdroje/mobil.png");
+        Vec jackDaniels = new Vec("jack_daniels", "Flaša kvalitnej, dobre známej whiskey", true, "/zdroje/jack.jpg");
+        Vec kubanskeDutniky = new Vec("dutníky", "Balenie pravých kubánských dutníkov", true, "/zdroje/dutniky.jpg");
+        Vec rozkyt = new Vec("r&t", "Sada pre labužníkov - rožky a treska", true, "/zdroje/treska.png");
         
         
         // umístíme věci do prostorů

@@ -5,6 +5,8 @@ package logika;
 
 
 import java.util.*;
+import utils.Observer;
+import utils.Subject;
 
 
 /*******************************************************************************
@@ -15,14 +17,15 @@ import java.util.*;
  * @author  Miroslav Leško
  * @version 1.00.0000 — 2016-12-26
  */
-public class Batoh
+public class Batoh implements Subject
 {
     //== CONSTANT CLASS ATTRIBUTES =============================================
     private Set<Vec> batoh;
-    
+    private List<Observer> seznamObserveru = new ArrayList<Observer>();
     
     
     //== VARIABLE CLASS ATTRIBUTES =============================================
+
 
 
 
@@ -50,7 +53,7 @@ public class Batoh
     public Batoh()
     {
         batoh = new HashSet <> ();
-    
+        
     }
 
 
@@ -67,9 +70,13 @@ public class Batoh
         return false;
         }
         
-        return batoh.add(vec);
+        batoh.add(vec);
+        notifyObservers();
+        return true;
     }
     
+
+
      /**
      * Vrátenie hodnoty true, ak je dosiahnutá maximálna kapacita
      * batohu, ktorá je 4 veci.  
@@ -118,6 +125,7 @@ public class Batoh
                 // odstránenie veci z batohy
                 if(v.getNazev().equals(vec.getNazev())){
                     batoh.remove(v);
+                    notifyObservers();
                     return true;
                 }
     
@@ -152,6 +160,16 @@ public class Batoh
        
         
     }
+
+    public Set<Vec> getSetVeci() {
+        return batoh;
+    }
+
+    
+    
+    
+    
+    
     
     
     //== OTHER NON-PRIVATE INSTANCE METHODS ====================================
@@ -161,4 +179,23 @@ public class Batoh
 
     //##########################################################################
     //== NESTED DATA TYPES =====================================================
+
+
+    @Override
+    public void registerObserver(Observer observer) {
+        seznamObserveru.add(observer);
+    }
+
+    @Override
+    public void removeObserver(Observer observer) {
+        seznamObserveru.remove(observer); 
+    }
+
+    @Override
+    public void notifyObservers() {
+        for(Observer observerPolozkaZoznamu : seznamObserveru){
+        observerPolozkaZoznamu.update();
+    }
+    }
+
 }

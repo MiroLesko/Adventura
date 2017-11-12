@@ -7,26 +7,21 @@ package main;
 
 import GUI.Mapa;
 import GUI.MenuLista;
+import GUI.ObsahBatohu;
+import GUI.SousedniProstory;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Paint;
-import javafx.scene.shape.Circle;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import logika.*;
 import uiText.TextoveRozhrani;
@@ -42,12 +37,18 @@ public class Main extends Application {
     private TextField zadejPrikazTextArea;
     private Mapa mapa;
     private MenuLista menuLista;
-
+    private Stage stage;
+    private ObsahBatohu obsahBatohu;
+    private SousedniProstory sousedniProstory;
+    
     @Override
     public void start(Stage primaryStage) {
+        stage = primaryStage;
         hra = new Hra();
         mapa = new Mapa(hra);
         menuLista = new MenuLista(hra, this);
+        obsahBatohu = new ObsahBatohu(hra);
+        sousedniProstory = new SousedniProstory(hra);
         
         BorderPane borderPane = new BorderPane();
         
@@ -92,12 +93,23 @@ public class Main extends Application {
 
         dolniLista.setAlignment(Pos.CENTER);
         dolniLista.getChildren().addAll(zadejPrikazLabel, zadejPrikazTextArea);
+       
+        VBox bocnaLista = new VBox();
+        Label nazovSusednePriestory = new Label("Susedné priestory:");
+        nazovSusednePriestory.setFont(Font.font("Arial", FontWeight.BOLD, 14));
         
-        borderPane.setLeft(mapa);
+        bocnaLista.setSpacing(5);
+        bocnaLista.getChildren().addAll(mapa, nazovSusednePriestory,sousedniProstory);
+        
+        
+        borderPane.setLeft(bocnaLista);
         borderPane.setBottom(dolniLista);
         borderPane.setTop(menuLista);
+        borderPane.setRight(obsahBatohu);
         
-        Scene scene = new Scene(borderPane, 900, 450);
+        
+        
+        Scene scene = new Scene(borderPane, 1100, 650);
 
         primaryStage.setTitle("Adventura");
 
@@ -131,5 +143,11 @@ public class Main extends Application {
             }
         }
     }
+
+    public Stage getStage() {
+        return stage;
+    }
+
+
 
 }

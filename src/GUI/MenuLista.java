@@ -7,12 +7,16 @@ package GUI;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCombination;
+import javafx.scene.web.WebView;
+import javafx.stage.Stage;
 import logika.Hra;
 import logika.IHra;
 import main.Main;
@@ -36,6 +40,7 @@ public class MenuLista extends MenuBar{
 
     private void init(){
       Menu novySoubor = new Menu("Adventura");
+      Menu napoveda = new Menu("Help");
       MenuItem novaHra = new MenuItem("Nova hra");//, new ImageView(new Image(Main.class.getResourceAsStream("zdroj.png"))));
       novaHra.setAccelerator(KeyCombination.keyCombination("Ctrl+H"));
       
@@ -43,7 +48,13 @@ public class MenuLista extends MenuBar{
       
       novySoubor.getItems().addAll(novaHra, konecHry);
       
-      this.getMenus().addAll(novySoubor);
+      this.getMenus().addAll(novySoubor, napoveda);
+      
+      MenuItem oProgramu = new MenuItem("O programu");
+      MenuItem napovedaItem = new MenuItem("Napoveda");
+      
+      napoveda.getItems().addAll(oProgramu, napovedaItem);
+      
       
       konecHry.setOnAction(new EventHandler<ActionEvent>() {
           @Override
@@ -51,7 +62,7 @@ public class MenuLista extends MenuBar{
               System.exit(0);
           }
       });
-      
+      /**
       novaHra.setOnAction(new EventHandler<ActionEvent>() {
           @Override
           public void handle(ActionEvent event) {
@@ -61,7 +72,38 @@ public class MenuLista extends MenuBar{
               main.getCentralText().setText(hra.vratUvitani());
           }
       });
+      * 
+      */
     
+      oProgramu.setOnAction(new EventHandler<ActionEvent>() {
+          @Override
+          public void handle(ActionEvent event) {
+             Alert oProgramuAlert = new Alert(Alert.AlertType.INFORMATION);         
+             oProgramuAlert.setTitle("O programu");
+             oProgramuAlert.setHeaderText("Super adventura XYZ");
+             oProgramuAlert.setContentText("OSGAJNGJASNGKAJSGIJKANSG");
+             oProgramuAlert.initOwner(main.getStage());
+          
+             oProgramuAlert.showAndWait();
+          
+          }
+     });
+      
+        napovedaItem.setOnAction(new EventHandler<ActionEvent>() {
+          @Override
+          public void handle(ActionEvent event) {
+             Stage stage = new Stage();
+             stage.setTitle("Napoveda");
+             
+             WebView webView = new WebView();
+             webView.getEngine().load(Main.class.getResource("/zdroje/napoveda.html").toExternalForm());
+             
+             stage.setScene(new Scene(webView, 500,500));
+             stage.show();
+             
+             
+          }
+      });
     
     }
 }

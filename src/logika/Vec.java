@@ -18,6 +18,7 @@ public class Vec
     private String nazev;
     private String popis;
     private boolean prenositelna;
+    private String zdroj;
     
     //== Konstruktory a tovární metody =============================================
 
@@ -26,12 +27,14 @@ public class Vec
      *  @param nazev Názov vytváranej veci
      *  @param popis Popis veci, špecifikácia
      *  @param prenositelna Informácia o jej prenositelonosti (true/false)
+     *  @param zdroj Zdroj grafického súboru predstavujúceho vec
      */
-    public Vec(String nazev, String popis, boolean prenositelna)
+    public Vec(String nazev, String popis, boolean prenositelna, String zdroj)
     {
         this.nazev = nazev;
         this.popis = popis;
         this.prenositelna = prenositelna;
+        this.zdroj = zdroj;
     }
 
     //== Nesoukromé metody (instancí i třídy) ======================================
@@ -59,9 +62,15 @@ public class Vec
         return prenositelna;
     }
 
+    
+    public String getZdroj() {
+        return zdroj;
+    }
+    
     // Možná bude potřeba přidat settery pro atributy 'popis' a 'prenositelna'.
     // Atribut 'nazev' by se měnit neměl.
 
     //== Soukromé metody (instancí i třídy) ========================================
+      
 
 }
