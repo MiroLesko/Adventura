@@ -99,7 +99,7 @@ public class ObsahBatohu extends ListView implements Observer {
             public void handle(ActionEvent event) {
                PrikazZahod prikazZahod = new PrikazZahod(main.getHra().getHerniPlan());
                main.getCentralText().appendText("\n" + prikazZahod.proved(vecVBatohu.getNazev())+ "\n");
-               
+               main.getVeciVPriestore().update();
             }
         }
         );

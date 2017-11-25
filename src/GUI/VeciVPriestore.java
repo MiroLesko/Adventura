@@ -79,7 +79,7 @@ public class VeciVPriestore extends ListView implements Observer {
                public void handle(ActionEvent event) {
                    PrikazVezmi prikazVezmi = new PrikazVezmi(main.getHra().getHerniPlan());
                    main.getCentralText().appendText("\n" + prikazVezmi.proved(vecVPriestore.getNazev())+ "\n");
-                   
+                   update();
                }
            });
            
