@@ -62,7 +62,7 @@ public class PrikazVezmi implements IPrikaz
        // prípad dosiahnutia maximálnej kapacity batohu, vec je vložená 
        // späť do priestoru
        if (herniPlan.getBatoh().jePlny()) {
-               herniPlan.getAktualniProstor().vlozVec(vec);
+                herniPlan.getAktualniProstor().vlozVec(vec);
                return "batoh je plný";
            }
        

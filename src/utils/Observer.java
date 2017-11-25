@@ -6,8 +6,9 @@
 package utils;
 
 /**
- *
- * @author Miro
+ * Rozhranie observer obsahuje metódu, ktorá vykoná aktualizáciu.
+ * @author Miroslav Leško
+ * @version 1.00.0000 — 2017-11-12
  */
 public interface Observer {
    void update(); 

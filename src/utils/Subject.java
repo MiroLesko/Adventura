@@ -6,8 +6,10 @@
 package utils;
 
 /**
- *
- * @author Miro
+ * Rozhranie Subject obsahuje metódy, ktoré registrujú, odstraňujú
+ * a upozorňujú pozorovateľov objektov impementujúcich toto rozhranie.
+ * @author Miroslav Leško
+ * @version 1.00.0000 — 2017-11-12
  */
 public interface Subject {
     void registerObserver(Observer observer);

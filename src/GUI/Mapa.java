@@ -14,8 +14,12 @@ import main.Main;
 import utils.Observer;
 
 /**
- *
+ * Trieda ObsahBatohu ako potomok triedy AnchorPane vytvára
+ * špecifickú instanciu, ktorá zobrazuje mapu priestorov a aktuálne umiestnenie.
+ * Zároveň implementuje rozhranie Observer,
+ * pomocou ktorého reaguje na pridanie a odobranie veci z batoha.
  * @author Miro
+ * @version 1.00.0000 — 2017-11-12
  */
 public class Mapa extends AnchorPane implements Observer {
     private IHra hra;
@@ -31,22 +35,37 @@ public class Mapa extends AnchorPane implements Observer {
     
     }
     
+    
+    /**
+    * Metóda inicializuje obrazovú formu mapy zo zdrojového súboru 
+    * a pridáva ju spolu s ukazovateľom aktuálneho priestoru
+    * do Mapy.
+    */
     private void init(){
-   
-       
         ImageView obrazekImageView = new ImageView(new Image(Main.class.getResourceAsStream("/zdroje/mapa.jpg"),500,350,false,true));
-        
-        
-      //  tecka = new Circle(7, Paint.valueOf("red"));
-       // this.setTopAnchor(tecka, 0.0);
-       // this.setLeftAnchor(tecka, 0.0);
-        
         this.getChildren().addAll(obrazekImageView, krizImageView);
-        
         update();
     }
     
     
+    
+    /**
+    * Metóda odregistruje, vytvorí novú hru a opätovne zaregistruje observerov.
+    *
+    * @param novaHra nová Hra
+    */ 
+    public void newGame(IHra novaHra){
+        hra.getHerniPlan().removeObserver(this);
+        hra = novaHra;
+        hra.getHerniPlan().registerObserver(this);
+        update();
+    }
+    
+    /**
+    * Metóda vykonáva aktualizáciu ukazovateľa aktuálneho priestoru v po notifikácií
+    * (upozornení na zmenu) pozorovaným subjektom.
+    *
+    */ 
     @Override
     public void update() {
         this.setTopAnchor(krizImageView, hra.getHerniPlan().getAktualniProstor().getPosTop());

@@ -1,5 +1,6 @@
 package logika;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Set;
@@ -8,6 +9,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.stream.Collectors;
+import utils.Observer;
+import utils.Subject;
 
 /**
  * Trida Prostor - popisuje jednotlivé prostory (místnosti) hry
@@ -21,7 +24,7 @@ import java.util.stream.Collectors;
  * @author Michael Kolling, Lubos Pavlicek, Jarmila Pavlickova, Jan Riha, Miroslav Leško
  * @version ZS 2016/2017
  */
-public class Prostor {
+public class Prostor implements Subject {
 
     private String nazev;
     private String popis;
@@ -30,13 +33,19 @@ public class Prostor {
     private boolean zamknutost;
     private double posLeft;
     private double posTop;
+    private List<Observer> seznamObserveru = new ArrayList<Observer>();
+    
     /**
+     * 
      * Vytvoření prostoru se zadaným popisem, např. "kuchyň", "hala", "trávník
      * před domem"
      *
      * @param nazev nazev prostoru, jednoznačný identifikátor, jedno slovo nebo
      * víceslovný název bez mezer.
      * @param popis Popis prostoru.
+     * @param posLeft pozice prostoru, pozícia (X) priestoru na mape priestorov
+     * @param posTop pozice prostoru, pozícia (Y) priestoru na mape priestorov
+     * 
      */
     public Prostor(String nazev, String popis, double posLeft, double posTop) {
         this.nazev = nazev;
@@ -54,7 +63,8 @@ public class Prostor {
     public double getPosTop() {
         return posTop;
     }
-
+    
+    
     /**
      * Definuje východ z prostoru (sousední/vedlejsi prostor). Vzhledem k tomu,
      * že je použit Set pro uložení východů, může být sousední prostor uveden
@@ -203,6 +213,7 @@ public class Prostor {
      */
     public void vlozVec(Vec vec) {
         veci.put(vec.getNazev(), vec);
+        notifyObservers();
     }
     
       /**
@@ -211,8 +222,26 @@ public class Prostor {
      * @return odobraná vec
      */
     public Vec odeberVec(String nazev) {
-        return veci.remove(nazev);
+        Vec hladana = null;
+        hladana = veci.remove(nazev);
+        notifyObservers();
+        return hladana;
     }
+    
+    
+    /*
+    public Vec najdiVec(String nazov) {
+        Vec hladanaVec = null;
+        for (Vec hlV : veci.values()){
+            if(hladanaVec.getNazev().equals(nazev)){
+             hladanaVec = hlV;
+            }
+        
+        } 
+        return hladanaVec;
+    }
+    
+    */
     
      /**
      * Vracia informáciu o zamknutosti priestoru. 
@@ -230,6 +259,26 @@ public class Prostor {
     public void setZamknutost(boolean zamknutost){
         this.zamknutost = zamknutost;
     }
-    
+
+    public Map<String, Vec> getVeci() {
+        return veci;
+    }
+
+    @Override
+    public void registerObserver(Observer observer) {
+        seznamObserveru.add(observer);
+    }
+
+    @Override
+    public void removeObserver(Observer observer) {
+        seznamObserveru.remove(observer);
+    }
+
+    @Override
+    public void notifyObservers() {
+         for (Observer listObserveruItem : seznamObserveru) {
+            listObserveruItem.update();
+        }
+    }
     
 }

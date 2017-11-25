@@ -12,6 +12,7 @@ import utils.Subject;
  * Tato třída inicializuje prvky ze kterých se hra skládá:
  * vytváří všechny prostory, propojuje je vzájemně pomocí východů
  * a pamatuje si aktuální prostor, ve kterém se hráč právě nachází.
+ * Zároveň implementuje rozhraní Subject.
  *
  * @author     Michael Kolling, Lubos Pavlicek, Jarmila Pavlickova, Jan Riha, Miroslav Leško
  * @version    ZS 2016/2017
@@ -168,7 +169,7 @@ public class HerniPlan implements Subject{
     
     /**
      *  Metoda nastaví aktuální prostor, používá se nejčastěji při přechodu mezi prostory
-     *
+     *  Zároveň upozorní observerov na zmenu stavu.
      *@param  prostor nový aktuální prostor
      */
     public void setAktualniProstor(Prostor prostor) {
@@ -209,17 +210,29 @@ public class HerniPlan implements Subject{
     
     }
 
+    /**
+    *   Metóda registruje (pridáva) observer do zoznamu observerov.
+    *   @param observer, ktorý potrebujem pridať do zoznamu
+    */
     @Override
     public void registerObserver(Observer observer) {
         listObserveru.add(observer);
 
     }
 
+    /**
+    *   Metóda vymazáva observer do zoznamu observerov.
+    *   @param observer, ktorý potrebujem odobrať do zoznamu
+    */
     @Override
     public void removeObserver(Observer observer) {
          listObserveru.remove(observer);
     }
 
+    /**
+    *   Metóda upozorňuje observerov na zmenu stavu.
+    *   
+    */
     @Override
     public void notifyObservers() {
          for (Observer listObserveruItem : listObserveru) {

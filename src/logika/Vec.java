@@ -63,6 +63,10 @@ public class Vec
     }
 
     
+    /**
+    * Metóda vracia informáciu o obrazovom zdroji veci.
+    * @return stringový odkaz zdroja
+    */
     public String getZdroj() {
         return zdroj;
     }

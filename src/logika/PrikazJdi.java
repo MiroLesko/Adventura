@@ -7,7 +7,7 @@ package logika;
  * @author     Jarmila Pavlickova, Luboš Pavlíček, Jan Riha, Miroslav Leško
  * @version    ZS 2016/2017
  */
-class PrikazJdi implements IPrikaz {
+public class PrikazJdi implements IPrikaz {
     private static final String NAZEV = "jdi";
     private HerniPlan plan;
     

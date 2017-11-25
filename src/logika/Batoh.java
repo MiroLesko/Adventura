@@ -161,6 +161,11 @@ public class Batoh implements Subject
         
     }
 
+    /**
+    * Vrátenie batohu. Metóda vráti zoznam (set) vecí v batohu.
+    * 
+    * @return batoh
+    */
     public Set<Vec> getSetVeci() {
         return batoh;
     }
