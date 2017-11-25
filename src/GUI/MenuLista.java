@@ -104,8 +104,8 @@ public class MenuLista extends MenuBar{
           public void handle(ActionEvent event) {
              Alert oProgramuAlert = new Alert(Alert.AlertType.INFORMATION);         
              oProgramuAlert.setTitle("O programu");
-             oProgramuAlert.setHeaderText("Super adventura XYZ");
-             oProgramuAlert.setContentText("OSGAJNGJASNGKAJSGIJKANSG");
+             oProgramuAlert.setHeaderText("Adventúra");
+             oProgramuAlert.setContentText("Perfektná hra pre voľné chvíle."+"\n"+ "Vytvorené v roku 2017.");
              oProgramuAlert.initOwner(main.getStage());
           
              oProgramuAlert.showAndWait();
