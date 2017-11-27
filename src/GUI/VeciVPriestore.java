@@ -22,8 +22,12 @@ import utils.Observer;
 
 
 /**
- *
- * @author Miro
+ * Metóda veci v priestore, ktorá je potomkom triedy ListView zobrazuje
+ * množinu vecí nachádzajúcich sa v aktuálnom priestore. Množina vecí je 
+ * aktualizovaná po notifikácia Subjektom.
+ * 
+ * @author Miroslav Leško
+ * @version 1.00.0000 — 2017-11-24
  */
 public class VeciVPriestore extends ListView implements Observer {
     ObservableList<Button> viditelnyZoznamVeci;
@@ -37,6 +41,12 @@ public class VeciVPriestore extends ListView implements Observer {
     addList();
     }
     
+    /**
+    * Metóda vytvára vidieľný zoznam vecí a vkladá ho do 
+    * VeciVPriestore.
+    * 
+    * 
+    */
     public void addList(){
     viditelnyZoznamVeci = FXCollections.observableArrayList();
     this.setItems(viditelnyZoznamVeci);
@@ -58,14 +68,19 @@ public class VeciVPriestore extends ListView implements Observer {
         main.getHra().getHerniPlan().getAktualniProstor().registerObserver(this);
         update();
     }
+     
     
-    
-      
+    /**
+    * Metóda vykonáva aktualizáciu viditeľného zoznamu priestorov po notifikácií
+    * (upozornení na zmenu) pozorovaným subjektom. 
+    *
+    */ 
     @Override
     public void update() {
-      
+        // premazanie viditeľného zoznamu priestorov
         viditelnyZoznamVeci.clear();
        
+       // prechádzanie setu vecí v aktuálnom priestore, vytváranie tlačidiel a nastavenie ich vvzhľadu v podobe vecí 
        for(Vec vecVPriestore : main.getHra().getHerniPlan().getAktualniProstor().getVeci().values()){
            ImageView viditelnaVecVPriestore = new ImageView(new Image(Main.class.getResourceAsStream(vecVPriestore.getZdroj()),100,100,false,true));
            
@@ -73,7 +88,9 @@ public class VeciVPriestore extends ListView implements Observer {
            button.setGraphic(viditelnaVecVPriestore);
            
            viditelnyZoznamVeci.add(button);
+          
            
+           //nastavenie reakcie na kliknutie - vloženie veci do batohu a následná aktualizácia vecí v priestore
            button.setOnAction(new EventHandler<ActionEvent>() {
                @Override
                public void handle(ActionEvent event) {

@@ -84,8 +84,10 @@ public class ObsahBatohu extends ListView implements Observer {
     */ 
     @Override
     public void update() {
-      
+      //premazanie zobrazeného viditeľného batohu
       viditelnyBatoh.clear();
+      
+      //prechádzanie batohu a vkladanie tlačidiel s podobou vecí z batohu
       for(Vec vecVBatohu : main.getHra().getHerniPlan().getBatoh().getSetVeci()){
         ImageView viditelnaVecVBatohu = new ImageView(new Image(Main.class.getResourceAsStream(vecVBatohu.getZdroj()),150,150,false,true));
         
@@ -93,7 +95,7 @@ public class ObsahBatohu extends ListView implements Observer {
         button.setGraphic(viditelnaVecVBatohu);
         viditelnyBatoh.add(button);
         
-        
+        //nastavenie reakcie na kliknutie - zahodenie veci a aktualizácia batoha
         button.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {

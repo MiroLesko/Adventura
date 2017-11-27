@@ -230,12 +230,22 @@ public class Main extends Application {
     public Stage getStage() {
         return stage;
     }
-
+    
+    /**
+    *   Metóda vráti rozhranie, ktoré implementuje hra.
+    *   @return hra
+    */
+    
     public IHra getHra() {
         return hra;
     
     }
 
+    /**
+    *   Metóda vráti zoznam vecí, ktoré sa nachádzajú v priestore.
+    *   @return veciVPriestore zoznam vecí v aktuálnom priestore
+    */
+    
     public VeciVPriestore getVeciVPriestore() {
         return veciVPriestore;
     }

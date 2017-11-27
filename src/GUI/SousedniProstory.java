@@ -71,13 +71,16 @@ public class SousedniProstory extends ListView implements Observer {
     */ 
     @Override
     public void update() {
-       
+        //premazanie viditeľného zoznamu priestorov
         viditelnyZoznamPriestorov.clear();
         
+        //prechádzanie východov a ich pridanie ako samostatné tlačidlá do zoznamu 
         for(Prostor susednyPriestor : main.getHra().getHerniPlan().getAktualniProstor().getVychody()){
             Button button = new Button();
             viditelnyZoznamPriestorov.add(button);
             button.setText(susednyPriestor.getNazev());
+            
+            //nastavenie reakcie na kliknutie - prechod do priestoru
             button.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
